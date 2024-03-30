@@ -1,3 +1,4 @@
+const apiBase = "https://chillspot.onrender.com";
 const signupBtn = document.getElementById("signupBtn");
 const signupEmail = document.getElementById('signup-email');
 const signupPass = document.getElementById("signup-pass");
@@ -14,7 +15,7 @@ signupBtn.addEventListener("click", async (e) => {
         password: signupPass.value,
         mobile: signupMobile.value,
     }
-    let response = await fetch("http://localhost:8080/signup", {
+    let response = await fetch(`${apiBase}/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(user)
@@ -33,7 +34,7 @@ loginBtn.addEventListener("click", async (e) => {
         email: loginEmail.value,
         password: loginPass.value
     };
-    let response = await fetch("http://localhost:8080/login", {
+    let response = await fetch(`${apiBase}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(user)

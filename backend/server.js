@@ -11,6 +11,9 @@ app.use(express.json());
 app.use(cors());
 app.use('/', routes);
 
+app.get("", (req, res) => {
+    res.send("<h1>Server is running...</h1>")
+})
 
 // calling the connectDB function and listening server in then block
 connectDB(process.env.DATABASE_URI).then(() => {
