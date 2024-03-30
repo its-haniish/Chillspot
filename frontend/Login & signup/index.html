@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Signup</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+</head>
+<body>
+   
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form>
+                <h1>Create Account</h1>
+                <div class="social-container">
+                    <a href="" class="social1"><i class='bx bxl-meta'></i></a>
+                    <a href="" class="social2"><i class='bx bxl-linkedin' ></i></a>
+                    <a href="" class="social3"><i class='bx bxl-github' ></i></a>
+                </div>
+                <span>Or use your email for registration</span>
+                
+                <input type="number" placeholder="Mobile number" id="signup-mobile" required>
+
+                <input type="email" placeholder="Email" id="signup-email" required>
+                <input type="password" placeholder="password" id="signup-pass" required>
+                <button type="submit" id="signupBtn">Signup</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form action="#">
+                <h1>Sign In</h1>
+                
+                
+                <span>Or use your account</span> 
+                <input type="email" placeholder="Mobile number or Email" id="login-email" required>
+                <input type="password" placeholder="password" id="login-pass" required>
+                <a href="#" class="forgot">forgot password</a>
+                <button type="submit" id="login-btn">Sign in</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <h1>Welcome To <b>Chillspot</b></h1>
+                <p>Make a  <span>Moment With Chillspot </span></p>
+            <button class="press" id="signIn">Sign In</button>
+            </div>
+
+            <div class="overlay-panel overlay-right">
+                <h1>Welcome To Chillspot!</h1>
+                <p>Let's continue <span class="spans">With Chillspot</span></p>
+               <p class="para">new customer? signup here</p>
+            <button class="press" id="signUp">Sign Up</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+    <script>
+const signUpButton = document.getElementById("signUp");
+const signInButton = document.getElementById("signIn");
+const container = document.getElementById("container");
+
+signUpButton.addEventListener('click',()=>{
+   container.classList.add("right-panel-active")
+})
+
+signInButton.addEventListener('click',()=>{
+   container.classList.remove("right-panel-active")
+})
+
+    </script>
+</body>
+</html>
