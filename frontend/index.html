@@ -100,10 +100,22 @@
                             <ul class="menu food-nav-menu">
                                 <li><a href="#home">Home</a></li>
                                 <li><a href="#about">About</a></li>
-                                <li><a href="pizza_menu-main/index.html">Menu</a></li>
+                                <li><a href="./pizza_menu-main/index.html">Menu</a></li>
+                                <li><a href="#" id=orders-btn>Orders</a></li>
                                 <li><a href="#gallery">Chillspot</a></li>
                                 <li><a href="#blog">Blog</a></li>
                                 <li><a href="#contact">Contact</a></li>
+                                <script defer>
+                                    const ordersBtn = document.getElementById("orders-btn");
+                                    ordersBtn.addEventListener("click",(e)=>{
+                                        if(localStorage.getItem("chillspotToken") !== null){
+                                             window.location.href = "./history.html"
+                                        }else{
+                                            alert("Login to view orders.")
+                                            return;
+                                        }
+                                    })
+                                    </script>
                             </ul>
                         </nav>
                         <div class="InputContainer">

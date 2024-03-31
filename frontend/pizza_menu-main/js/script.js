@@ -110,7 +110,6 @@ document.querySelector('.cartIcon').addEventListener("click", () => { //cart eve
 
 })
 
-/* --- Main System --- */
 document.querySelector(".addProduct").addEventListener("click", () => { //Add product to cart
     //modalKey = Qual pizza
     //pizzaSize = Tamanho da pizza
@@ -119,41 +118,40 @@ document.querySelector(".addProduct").addEventListener("click", () => { //Add pr
     let identifier = pizzaJson[modalKey].id + '@' + pizzaSize;
     let key = cart.findIndex(item => item.identifier == identifier);
 
+    // Calculate the price based on the selected size
+    let pizzaPriceFloat = pizzaJson[modalKey].price;
+    switch (pizzaSize) {
+        case 0:
+            pizzaPriceFloat *= 0.8;
+            break;
+        case 1:
+            pizzaPriceFloat *= 0.9;
+            break;
+        default:
+            console.log("Error calculating the price. Key = " + key);
+            break;
+    }
+
     if (key > -1) {
-        cart[key].amount += pizzaAmount
+        cart[key].amount += pizzaAmount;
     } else {
-        let selectedPizza = pizzaJson[modalKey];
-        let pizzaPriceFloat = selectedPizza.price;
-
-        switch (pizzaSize) {
-            case 0:
-                pizzaPriceFloat *= .8;
-                break;
-            case 1:
-                pizzaPriceFloat *= .9;
-                break;
-            default:
-                console.log("Erro ao calcular o preço. Key = " + key);
-                break;
-        }
-
         cart.push({
             identifier: identifier,
-            id: selectedPizza.id,
+            id: pizzaJson[modalKey].id,
+            name: pizzaJson[modalKey].name,
+            price: pizzaPriceFloat, // Include item price
             size: pizzaSize,
-            name: selectedPizza.name,
-            price: pizzaPriceFloat,
             amount: pizzaAmount
         });
     }
 
     console.log(cart);
     document.querySelector(".cartIcon span").innerHTML = cart.length;
-    document.querySelector(".cartIcon span").style.display = "flex"
+    document.querySelector(".cartIcon span").style.display = "flex";
 
     updateCar();
     closePizzaInfoModal();
-})
+});
 
 
 pizzaJson.map((item, index) => { //Fill content div with pizzas info & open modal system.
@@ -216,6 +214,7 @@ function updateCar() { //Update cart function
             switch (cart[i].size) {
                 case 0:
                     pizzaSizeName = "From Chillspot";
+                    console.log()
                     break;
                 case 1:
                     pizzaSizeName = "From Cornetto";
@@ -262,10 +261,38 @@ function updateCar() { //Update cart function
     }
 }
 
+const apiBase = "https://chillspot.onrender.com";
+
 /* --- Order Now Button --- */
-document.querySelector('#orderNowBtn').addEventListener("click", () => { // Order Now button eventListener
-    // Simulate order submission (you can replace this with actual logic)
-    console.log("Order submitted:", cart);
-    if (cart.length !== 0)
-        alert("Order Placed")
+document.querySelector('#orderNowBtn').addEventListener("click", async () => { // Order Now button eventListener
+    const address = document.getElementById("address").value;
+    const email = localStorage.getItem("chillspotEmail");
+    const time = new Date().getTime()
+    console.log("Placing order...");
+    if (address === "") {
+        return alert("Enter your address to place order.");
+    }
+    let itemsArray = [];
+    cart.forEach((elem) => {
+        itemsArray.push({
+            name: elem.name,
+            price: elem.price,
+            amount: elem.amount,
+            address, time
+        })
+    });
+    let response = await fetch(`${apiBase}/place-order`, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${JSON.parse(localStorage.getItem("chillspotToken"))}`
+        },
+        body: JSON.stringify({ itemsArray, email })
+    })
+    let result = await response.json();
+    if (result?.msg) {
+        return alert(result.msg)
+    } else {
+        return alert("Error  placing order");
+    }
 });

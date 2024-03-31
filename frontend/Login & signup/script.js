@@ -22,6 +22,7 @@ signupBtn.addEventListener("click", async (e) => {
     });
     let result = await response.json();
     if (result?.msg === "Account created successfully :)") {
+        localStorage.setItem("chillspotEmail", loginEmail.value);
         localStorage.setItem("chillspotToken", JSON.stringify(result.token))
         window.location.href = "../index.html"
     }
@@ -41,6 +42,7 @@ loginBtn.addEventListener("click", async (e) => {
     });
     let result = await response.json();
     if (result?.msg === "Login successfull") {
+        localStorage.setItem("chillspotEmail", loginEmail.value);
         localStorage.setItem("chillspotToken", JSON.stringify(result.token));
         window.location.href = "../index.html"
     }

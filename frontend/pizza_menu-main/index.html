@@ -14,7 +14,7 @@
 
         <script src="https://kit.fontawesome.com/3adda180c0.js" crossorigin="anonymous"></script>
 
-        <title>Chillspot Icecreams</title>
+        <title>Chillspot ICecreams</title>
     </head>
     <body class = "flex">
         <div class="models">
@@ -115,27 +115,57 @@
         </div>
 
         <div class="cart">
-            <div class="cartHeader flex">
+            <div class="cartHeader flex" style="flex-direction: column; gap: 10px;">
                 <h3>Cart Items</h3>
+                                <!-- Address field -->
+                                <div class="addressInput flex">
+                                    <label for="address">Address:</label>
+                                    <input type="text" id="address" name="address" placeholder="Enter your address">
+                                </div>
             </div>
-
+        
             <div class="container flex">
                 <h1>Infelizmente você ainda não comprou nada connosco :</h1>
-            </div>
 
+            </div>
+        
             <div class="finalData flex">
                 <div class="text">
-                    <h2 class = "subTotal" >Subtotal:</h2>
-                    <h2 class = "discount" >Discount: </h2>
-                    <h2 class = "totalText" >Total:</h2>
+                    <h2 class="subTotal">Subtotal:</h2>
+                    <h2 class="discount">Discount:</h2>
+                    <h2 class="totalText">Total:</h2>
                 </div>
-                <div class="buttonArea flex">  
-                    <button id="orderNowBtn">Place Order</button>  
+                <div class="buttonArea flex">
+                    <button id="orderNowBtn">Place Order</button>
                 </div>
-                
             </div>
-            
         </div>
+<style>
+    .addressInput{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 0px 10px;
+        align-items: center;
+        gap: 10px;
+    }
+    .addressInput label{
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+    .addressInput input {
+        font-weight: bold;
+        padding: 4px 10px;
+        border: none;
+        background: aliceblue;
+        color: black;
+        text-align: center;
+        border-radius: 4px;
+        font-size: 1rem;
+        width: 70%;
+
+    }
+</style>        
 
         <script src="./js/pizzas.js"></script>
         <script src="./js/script.js"></script>
