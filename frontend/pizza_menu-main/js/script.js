@@ -272,6 +272,9 @@ document.querySelector('#orderNowBtn').addEventListener("click", async () => { /
     if (address === "") {
         return alert("Enter your address to place order.");
     }
+    if (email === null) {
+        return alert("Login to place order.");
+    }
     let itemsArray = [];
     cart.forEach((elem) => {
         itemsArray.push({
@@ -290,9 +293,9 @@ document.querySelector('#orderNowBtn').addEventListener("click", async () => { /
         body: JSON.stringify({ itemsArray, email })
     })
     let result = await response.json();
-    if (result?.msg) {
-        return alert(result.msg)
+    if (result?.msg === "Order placed successfully.") {
+        window.location.href = "https://chillspot-phi.vercel.app/history.html";
     } else {
-        return alert("Error  placing order");
+        return alert("Error placing order");
     }
 });

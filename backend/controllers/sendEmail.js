@@ -6,6 +6,7 @@ const sendEmail = async (req, res) => {
     try {
         await sendEmailFn({ email, subject, msg })
             .then(() => {
+                console.log("Sent msg");
                 res.status(200).json({
                     msg: "Message sent successfully",
                 })

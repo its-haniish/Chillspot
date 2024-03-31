@@ -31,7 +31,7 @@ let getOrdersData = async () => {
     if (result?.msg) {
         return alert(result.msg);
     }
-    const orders = result.orders;
+    const orders = result.orders.reverse();
     let str = '';
 
 
