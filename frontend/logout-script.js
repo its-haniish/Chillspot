@@ -5,7 +5,6 @@ const logoutBtn = document.getElementById("logout-btn").addEventListener('click'
         if (isLogout) {
             localStorage.clear("chillspotToken")
             localStorage.clear("chillspotEmail");
-            alert("Logout successfull")
             window.location.href = "./Login & signup/index.html"
         }
     } else {
