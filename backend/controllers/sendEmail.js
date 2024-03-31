@@ -7,17 +7,17 @@ const sendEmail = async (req, res) => {
         await sendEmailFn({ email, subject, msg })
             .then(() => {
                 res.status(200).json({
-                    message: "Message sent successfully",
+                    msg: "Message sent successfully",
                 })
             })
             .catch(() => {
                 res.status(500).json({
-                    error: "Failed to send message"
+                    msg: "Failed to send message"
                 })
             })
     } catch (error) {
         res.status(500).json({
-            error: "Internal Server Error"
+            msg: "Internal Server Error"
         })
     }
 

@@ -22,10 +22,16 @@
                 <span>Or use your email for registration</span>
                 
                 <input type="number" placeholder="Mobile number" id="signup-mobile" required>
-
                 <input type="email" placeholder="Email" id="signup-email" required>
                 <input type="password" placeholder="password" id="signup-pass" required>
-                <button type="submit" id="signupBtn">Signup</button>
+                <div id="signupBtnDiv">
+                    <button type="submit" id="sendOtpBtn">Signup</button>
+                    <div id="otpInpDiv" style="display: none;">
+                        <h6 style="color: blue;">A verification code is sent to your email. Check the spam folder also.</h6>
+                        <input type="number" id="otpInp" placeholder="Enter the code..">
+                        <button type="submit" id="signupBtn">Verify</button>
+                    </div>
+                </div>
             </form>
         </div>
         <div class="form-container sign-in-container">
