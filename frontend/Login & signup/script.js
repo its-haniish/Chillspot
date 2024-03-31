@@ -43,7 +43,6 @@ signupBtn.addEventListener("click", async (e) => {
         password: signupPass.value,
         mobile: signupMobile.value,
     }
-    console.log("Inp val : ", otpInp.value);
     if (code !== +otpInp.value) {
         return alert("Invalid code.")
     }
