@@ -38,6 +38,7 @@ let getOrdersData = async () => {
 
     orders.forEach(elem => {
         const { name, amount, price, time, address } = elem;
+        const orderTime = new Date(time).toLocaleTimeString();
         const status = isTimePassed(time);
         console.log('status:', status);
         console.log('time:', time);
@@ -46,9 +47,11 @@ let getOrdersData = async () => {
     <div class="order">
     <div class="order-content">
         <h2>${name}</h2>
-        <p class="status delivered">Amount: ${amount}</p>
+        <p class="status delivered"> <span>Amount: ${amount}</span> <span>Time: ${orderTime}</span>  </p>
         <p class="status delivered">Delivery address: ${address}</p>
-        <p class="status delivered">Status: ${status ? "Delivered" : "Pending Delivery"}</p>
+        <p class="status delivered" >Status: <span style="color: ${status ? "green" : "red"}">
+        ${status ? "Delivered" : "Pending Delivery"}
+        </span> </p>
         <p class="status delivered">Total: $${price * amount}</p>
     </div>
     </div>
