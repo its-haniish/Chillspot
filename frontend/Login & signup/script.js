@@ -21,7 +21,7 @@ sendOtpBtn.addEventListener("click", async (e) => {
     const subject = "!! Chillspot Verification !!";
     const msg = `Your verification code joining chillspot is ${code}.`;
 
-    let response = await fetch(`http://localhost:8080/sendEmail`, {
+    let response = await fetch(`${apiBase}/sendEmail`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, subject, msg })
