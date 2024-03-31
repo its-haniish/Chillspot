@@ -15,6 +15,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    payments: {
+        type: [Object],
+        default: []
+    },
     orders: {
         type: Array,
         default: []
