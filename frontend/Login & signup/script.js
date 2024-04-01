@@ -17,7 +17,7 @@ const code = Math.floor(Math.random() * 10000);
 
 sendOtpBtn.addEventListener("click", async (e) => {
     e.preventDefault();
-    user.email =signupEmail.value;
+    user.email = signupEmail.value;
     user.password = signupPass.value;
     user.mobile = signupMobile.value;
 
@@ -41,12 +41,7 @@ sendOtpBtn.addEventListener("click", async (e) => {
 
 signupBtn.addEventListener("click", async (e) => {
     e.preventDefault();
-    const user = {
-        email: signupEmail.value,
-        password: signupPass.value,
-        mobile: signupMobile.value,
-    }
-    
+   
     if (code !== +otpInp.value) {
         return alert("Invalid code.")
     }
@@ -69,7 +64,7 @@ signupBtn.addEventListener("click", async (e) => {
 loginBtn.addEventListener("click", async (e) => {
     e.preventDefault();
     user.email = loginEmail.value;
-    user.password = password: loginPass.value;
+    user.password = loginPass.value;
 
     let response = await fetch(`${apiBase}/login`, {
         method: "POST",
