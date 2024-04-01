@@ -8,7 +8,11 @@ const connectDB = require('./functions/connectDB.js')
 const routes = require('./routes/routes.js')
 
 app.use(express.json());
-app.use(cors());
+
+app.use(cors({
+  origin: 'https://chillspot-test.vercel.app/'
+}));
+
 app.use('/', routes);
 
 app.get("", (req, res) => {
