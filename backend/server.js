@@ -9,8 +9,9 @@ const routes = require('./routes/routes.js')
 
 app.use(express.json());
 
+// Allow access from all domains
 app.use(cors({
-  origin: 'https://chillspot-test.vercel.app/'
+  origin: '*'
 }));
 
 app.use('/', routes);
