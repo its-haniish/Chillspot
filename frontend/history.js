@@ -18,13 +18,14 @@ function isTimePassed(timeInMilliseconds) {
 let getOrdersData = async () => {
     const email = localStorage.getItem("chillspotEmail");
     console.log("Fetching data...");
+    console.log("Chillspot email:",email)
     let response = await fetch(`${apiBase}/get-orders-by-email`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${JSON.parse(localStorage.getItem("chillspotToken"))}`
         },
-        body: JSON.stringify({ email })
+        body: JSON.stringify({ email: email })
     })
     let result = await response.json();
     console.log(result.orders);
