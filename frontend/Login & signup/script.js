@@ -37,6 +37,7 @@ sendOtpBtn.addEventListener("click", async (e) => {
 
 signupBtn.addEventListener("click", async (e) => {
     e.preventDefault();
+  localStorage.setItem("chillspotEmail", loginEmail.value);
     const user = {
         email: signupEmail.value,
         password: signupPass.value,
@@ -53,7 +54,7 @@ signupBtn.addEventListener("click", async (e) => {
     });
     let result = await response.json();
     if (result?.msg === "Account created successfully :)") {
-        localStorage.setItem("chillspotEmail", loginEmail.value);
+      
         localStorage.setItem("chillspotToken", JSON.stringify(result.token))
         window.location.href = "../index.html"
     } else {
