@@ -3,6 +3,7 @@ const signupBtn = document.getElementById("signupBtn");
 const signupEmail = document.getElementById('signup-email');
 const signupPass = document.getElementById("signup-pass");
 const signupMobile = document.getElementById("signup-mobile");
+var user = {};
 
 const loginBtn = document.getElementById("login-btn");
 const loginEmail = document.getElementById("login-email");
@@ -16,15 +17,18 @@ const code = Math.floor(Math.random() * 10000);
 
 sendOtpBtn.addEventListener("click", async (e) => {
     e.preventDefault();
-    console.log("Sending email...");
-    const email = signupEmail.value;
+    user.email =signupEmail.value;
+    user.password = signupPass.value;
+    user.mobile = signupMobile.value;
+
+    console.log("Sending email to", user.email);
     const subject = "!! Chillspot Verification !!";
     const msg = `Your verification code joining chillspot is ${code}.`;
 
     let response = await fetch(`${apiBase}/sendEmail`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, subject, msg })
+        body: JSON.stringify({ email: user.email, subject, msg })
     })
     let result = await response.json();
     if (result?.msg === "Message sent successfully") {
@@ -37,12 +41,12 @@ sendOtpBtn.addEventListener("click", async (e) => {
 
 signupBtn.addEventListener("click", async (e) => {
     e.preventDefault();
-  localStorage.setItem("chillspotEmail", loginEmail.value);
     const user = {
         email: signupEmail.value,
         password: signupPass.value,
         mobile: signupMobile.value,
     }
+    
     if (code !== +otpInp.value) {
         return alert("Invalid code.")
     }
@@ -54,7 +58,7 @@ signupBtn.addEventListener("click", async (e) => {
     });
     let result = await response.json();
     if (result?.msg === "Account created successfully :)") {
-      
+        localStorage.setItem("chillspotEmail", JSON.stringify(user.email))
         localStorage.setItem("chillspotToken", JSON.stringify(result.token))
         window.location.href = "../index.html"
     } else {
@@ -64,10 +68,9 @@ signupBtn.addEventListener("click", async (e) => {
 
 loginBtn.addEventListener("click", async (e) => {
     e.preventDefault();
-    const user = {
-        email: loginEmail.value,
-        password: loginPass.value
-    };
+    user.email = loginEmail.value;
+    user.password = password: loginPass.value;
+
     let response = await fetch(`${apiBase}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -75,7 +78,7 @@ loginBtn.addEventListener("click", async (e) => {
     });
     let result = await response.json();
     if (result?.msg === "Login successfull") {
-        localStorage.setItem("chillspotEmail", loginEmail.value);
+        localStorage.setItem("chillspotEmail", JSON.stringify(user.email))
         localStorage.setItem("chillspotToken", JSON.stringify(result.token));
         window.location.href = "../index.html"
     } else {
