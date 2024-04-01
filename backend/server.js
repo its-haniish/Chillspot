@@ -10,7 +10,9 @@ const routes = require('./routes/routes.js')
 app.use(express.json());
 
 // Allow access from all domains
-app.use(cors());
+app.use(cors({
+  origin: '*'
+}));
 
 app.use('/', routes);
 
