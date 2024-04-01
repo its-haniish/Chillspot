@@ -294,7 +294,7 @@ document.querySelector('#orderNowBtn').addEventListener("click", async () => { /
     })
     let result = await response.json();
     if (result?.msg === "Order placed successfully.") {
-        window.location.href = "https://chillspot-phi.vercel.app/history.html";
+        window.location.href = "https://chillspot-test.vercel.app/history.html";
     } else {
         return alert("Error placing order");
     }
